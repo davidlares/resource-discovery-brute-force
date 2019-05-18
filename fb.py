@@ -7,6 +7,13 @@ import re
 from termcolor import colored
 import md5 # used to text comparison
 
+# SELENIUM
+from selenium import webdriver
+options = webdriver.ChromeOptions()
+options.add_argument('headless')
+options.add_argument('window-size=1200x600')
+options.add_argument('--disable-extensions')
+
 # func for displaying the name
 def banner():
 
@@ -56,6 +63,14 @@ class Attack(Thread):
             # adding the hash to the table
             if self.hidecode != code:
                 if '200' <= code < '300':
+
+                    # dcap = dict(DesiredCapabilities.chrome()) # we say that we need PhantomJS
+                    driver = webdriver.Chrome('chromedriver', chrome_options = options) # driver instance
+                    time.sleep(2) # sleep for 2 segs
+                    # driver.set_window_size(1024, 768) # windows size seetup
+                    driver.get(self.url)
+                    driver.get_screenshot_as_file("photos/" + self.word + ".png") # take screenshots
+
                     print colored(code, 'green') + "\t" + chars + "\t" + words + "\t " + lines +"\t" + hash + "\t" + self.url + "\t"
                 elif '400' <= code < '500':
                     print colored(code, 'red') + "\t" + chars + "\t" + words + "\t " + lines +"\t" + hash + "\t" + self.url + "\t"
@@ -63,7 +78,7 @@ class Attack(Thread):
                     print colored(code, 'blue') + "\t" + chars + "\t" + words + "\t " + lines +"\t" + hash + "\t" + self.url + "\t"
                 else:
                     print colored(code, 'yellow') + "\t" + chars + "\t" + words + "\t " + lines +"\t" + hash + "\t" + self.url + "\t"
-            # print self.url + " - " + str(r.status_code)) # url and status code
+            # print self.url + "    - " + str(r.status_code)) # url and status code
             i[0] =i[0] - 1 # update the thread counter (remove)
         except Exception(e):
             print e
