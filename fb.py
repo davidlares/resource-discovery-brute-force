@@ -100,6 +100,10 @@ def launcher_thread(names, th, url, hidecode):
     i=[]
     resultlist=[]
     i.append(0)
+    print ""
+    print "Code" + "\t\tchars\t\twords\t\tlines\t\tURL"
+    print ""
+
     while len(names):
         try:
             if str(i[0]) < th:
