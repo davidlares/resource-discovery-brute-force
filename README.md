@@ -4,6 +4,8 @@ davidDiscover is a basic tool that simulates force brute attacks using a custom 
 
 Selenium works as an automation tool for testing, which triggers the `ChromeDriver` software that display a headless `Chromium Browser` instance for taking a screen capture of the current evaluated site/uri combo.
 
+![davidBrute](https://i.ibb.co/7r3QnCb/davidbrute.png "davidBrute")
+
 ## WAPP (Web Application Pentesting Process): Vulnerability Discovery
 
   1. Common Tools:
