@@ -4,12 +4,13 @@ davidDiscover is a basic tool that simulates force brute attacks using a custom 
 
 Selenium works as an automation tool for testing, which triggers the `ChromeDriver` software that display a headless `Chromium Browser` instance for taking a screen capture of the current evaluated site/uri combo.
 
-## WAPP: Vulberability Discovery
+## WAPP (Web Application Pentesting Process): Vulnerability Discovery
 
   1. Common Tools:
-    - Dictionary attacks: list of known words in order to identify resource
-    - Bruce forcing: list of combinations of string (identity resource)
-    - Fuzzing: resource discovery
+
+  - `Dictionary attacks`: list of known words in order to identify resource
+  - `Bruce forcing`: list of combinations of string (identity resource)
+  - `Fuzzing`: resource discovery
 
   What we can find: file directories, actions, servlets, parameters or anything HTTP accesible
 
@@ -19,7 +20,7 @@ In order to isolate this whole working environment, I recommend using a Virtuale
 
 For linux: (assuming you have the virtualenv library installed)
 
-`virtualenv -p python2.x [any name]`
+`virtualenv -p /usr/bin/python [any name]`
 
 Then, you should activate the environment.
 
