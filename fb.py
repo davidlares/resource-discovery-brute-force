@@ -1,9 +1,11 @@
 import requests
 from threading import Thread
 import sys
+import time
 import getopt
 import re
 from termcolor import colored
+import md5 # used to text comparison
 
 # func for displaying the name
 def banner():
@@ -36,21 +38,31 @@ class Attack(Thread):
     # performs the request
     def run(self):
         try:
+            start = time.time() # catching the UNIX time
             r = requests.get(self.url)
+            elaptime = time.time() # other time after the request
+            totaltime = str(elaptime - start) # calculating the difference
             lines = str(r.content.count("\n"))
             chars = str(len(r._content))
             words = str(len(re.findall("\S+", r.content)))
             code = str(r.status_code)
+            hash = md5.new(r.content).hexdigest() # hashing the request content
 
+            # getting if the location is redirected at first
+            if r.history != []:
+                first = r.history[0]
+                code = str(first.status_code) #updating the primary states code
+
+            # adding the hash to the table
             if self.hidecode != code:
                 if '200' <= code < '300':
-                    print colored(code, 'green') + "\t\t" + chars + " \t\t" + words + " \t\t " + lines +"\t" + self.url + "\t\t"
+                    print colored(code, 'green') + "\t" + chars + "\t" + words + "\t " + lines +"\t" + hash + "\t" + self.url + "\t"
                 elif '400' <= code < '500':
-                    print colored(code, 'red') + "\t\t" + chars + " \t\t" + words + " \t\t " + lines +"\t" + self.url + "\t\t"
+                    print colored(code, 'red') + "\t" + chars + "\t" + words + "\t " + lines +"\t" + hash + "\t" + self.url + "\t"
                 elif '300' <= code < '400':
-                    print colored(code, 'blue') + "\t\t" + chars + " \t\t" + words + " \t\t " + lines +"\t" + self.url + "\t\t"
+                    print colored(code, 'blue') + "\t" + chars + "\t" + words + "\t " + lines +"\t" + hash + "\t" + self.url + "\t"
                 else:
-                    print colored(code, 'yellow') + "\t\t" + chars + " \t\t" + words + " \t\t " + lines +"\t" + self.url + "\t\t"
+                    print colored(code, 'yellow') + "\t" + chars + "\t" + words + "\t " + lines +"\t" + hash + "\t" + self.url + "\t"
             # print self.url + " - " + str(r.status_code)) # url and status code
             i[0] =i[0] - 1 # update the thread counter (remove)
         except Exception(e):
@@ -101,7 +113,7 @@ def launcher_thread(names, th, url, hidecode):
     resultlist=[]
     i.append(0)
     print ""
-    print "Code" + "\t\tchars\t\twords\t\tlines\t\tURL"
+    print "Code" + "\t chars \t words \t lines \t MD5 \t URL"
     print ""
 
     while len(names):
