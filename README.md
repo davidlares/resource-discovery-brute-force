@@ -1,8 +1,8 @@
-# davidDiscover
+## davidDiscover
 
-davidDiscover is a basic tool that simulates force brute attacks using a custom TXT dictionary that checks the URI, and other related content of HTTP resources on an specific target. This also takes screenshots for returning `200 OK` statuses in order to automate and simplify Resource Discovery elements on a web application pentesting process.
+davidDiscover is a basic tool that simulates brute force attacks using a custom TXT dictionary that checks the URI and other related content of HTTP resources on a specific target. This also takes screenshots for returning `200 OK` statuses to automate and simplify Resource Discovery elements on a web application pentesting process.
 
-Selenium works as an automation tool for testing, which triggers the `ChromeDriver` software that display a headless `Chromium Browser` instance for taking a screen capture of the current evaluated site/uri combo.
+Selenium works as an automation tool for testing, which triggers the `ChromeDriver` software that displays a headless `Chromium Browser` instance for taking a screen capture of the current evaluated site/URI combo.
 
 ![davidBrute](https://i.ibb.co/7r3QnCb/davidbrute.png "davidBrute")
 
@@ -10,17 +10,17 @@ Selenium works as an automation tool for testing, which triggers the `ChromeDriv
 
   1. Common Tools:
 
-  - `Dictionary attacks`: list of known words in order to identify resource
+  - `Dictionary attacks`: a list of known words to identify the resource
   - `Bruce forcing`: list of combinations of string (identity resource)
   - `Fuzzing`: resource discovery
 
-  What we can find: file directories, actions, servlets, parameters or anything HTTP accesible
+  What we can find: file directories, actions, servlets, parameters or anything HTTP accessible
 
 ## Virtualenv
 
-In order to isolate this whole working environment, I recommend using a Virtualenv instance with the Python 2.7
+To isolate this whole working environment, I recommend using a Virtualenv instance with Python 2.7
 
-For linux: (assuming you have the virtualenv library installed)
+For Linux: (assuming you have the virtualenv library installed)
 
 `virtualenv -p /usr/bin/python [any name]`
 
@@ -28,7 +28,7 @@ Then, you should activate the environment.
 
 ## Script and arguments
 
-The working name for this project is `davidBrute` because my lackness of creativity for naming stuff. For executing the code, you'll have to:
+The working name for this project is `DavidBrute` because of my lack of creativity for naming stuff. To execute the code, you'll have to:
 
 `python fb.py` where you:
 
@@ -42,9 +42,7 @@ Example:
 `python fb.py -t 5 -w https://encarguelo.com/WORD -d dictionaries/custom_dictionary -c 404`
 
 ## Credits
-
-  - [David Lares](https://twitter.com/davidlares3)
+[David E Lares S](https://davidlares.com)
 
 ## License
-
-  - [MIT](https://opensource.org/licenses/MIT)
+[MIT](https://opensource.org/licenses/MIT)
